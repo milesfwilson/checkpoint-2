@@ -3,7 +3,9 @@ let statsBox = document.getElementById("stats")
 let inventoryBox = document.getElementById("inventory")
 let buttons = document.getElementById("buttons")
 let totalMod = 0
-let inflation = 1
+let inflation = 1.5
+let collectionInterval = 0
+let FPS = 0
 
 let player = {
   name: "Steve",
@@ -15,43 +17,67 @@ let player = {
 let upgrades = {
   basket: {
     name: "Basket",
-    price: 3,
+    price: 50,
     quantity: 0,
-    multiplier: 1
+    multiplier: 2,
+    regular: true
   },
   ladder: {
     name: "Ladder",
-    price: 5,
+    price: 200,
     quantity: 0,
-    multiplier: 3
+    multiplier: 5,
+    regular: true
+
   },
   workCrew: {
     name: "Workers",
-    price: 10,
+    price: 1000,
     quantity: 0,
-    multiplier: 20
+    multiplier: 100,
+    regular: false
+
   },
   tractor: {
     name: "Tractor",
-    price: 15,
+    price: 10000,
     quantity: 0,
-    multiplier: 50
+    multiplier: 1000,
+    regular: false
   }
 }
+let workCrew = upgrades.workCrew
+let tractor = upgrades.tractor
 
 
 
+function startInterval() {
+  collectionInterval = setInterval(collectAutoUpgrades, 1000);
+}
+
+function collectAutoUpgrades() {
+  console.log(apples += FPS)
+  update()
+}
 
 function addMods(itemName) {
-  if (apples >= (upgrades[itemName]['price'] * inflation)) {
-    totalMod += upgrades[itemName]['multiplier']
+  if (apples >= (upgrades[itemName]['price'])) {
+
+    if (upgrades[itemName]['regular']) {
+      totalMod += upgrades[itemName]['multiplier']
+    }
+
     apples -= upgrades[itemName]['price']
     ++upgrades[itemName]['quantity']
-    inflation *= 1.05
+    upgrades[itemName]['price'] *= inflation
+    FPS += ((workCrew.multiplier * workCrew.quantity) + (tractor.multiplier * tractor.quantity))
   }
 
   update()
 }
+
+// FIXED
+// NOTE fix multiplier on time based upgrades so the global multiplier number DOES NOT go up, just the FPS, apples, and quantities
 
 function pick() {
 
@@ -86,7 +112,7 @@ function drawButtons() {
 
       <div class="d-flex my-2 mx-auto">
       <i class="fa fa-money fa-2x" aria-hidden="true"></i>
-      <h5 class="ml-2 my-auto">${Math.floor((upgrades[key].price * inflation))}</h5>
+      <h5 class="ml-2 my-auto">${Math.floor(upgrades[key].price)}</h5>
       </div>
 
       <button class="btn btn-success shadow" onclick="addMods('${key}')">Buy</button>
@@ -104,8 +130,8 @@ function update() {
   <i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i>
   </div>
           <div class="text-left">
-          <h6>Apples: ${apples}</h6>
-          <h6>FPS: </h6>
+          <h6>Apples: ${Math.floor(apples)}</h6>
+          <h6>FPS: ${FPS}</h6>
           <h6>Multiplier: ${totalMod}</h6>
           </div>
   `
@@ -127,3 +153,4 @@ function update() {
 }
 
 update()
+startInterval()
