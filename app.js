@@ -113,11 +113,18 @@ function drawButtons() {
       <div class="d-flex my-2 mx-auto">
       <i class="fa fa-money fa-2x" aria-hidden="true"></i>
       <h5 class="ml-2 my-auto">${Math.floor(upgrades[key].price)}</h5>
-      </div>
+      </div>`
 
-      <button class="btn btn-success shadow" onclick="addMods('${key}')">Buy</button>
-      </div>
-      `
+      if (apples >= upgrades[key].price) {
+        template +=
+          `<button class="btn btn-success shadow" onclick="addMods('${key}')">Buy</button>
+  </div>
+  `
+      } else {
+        template += `<button class="btn btn-primary shadow" onclick="addMods('${key}')" disabled>Buy</button>
+        </div>
+        `
+      }
     }
   }
   buttons.innerHTML = template
