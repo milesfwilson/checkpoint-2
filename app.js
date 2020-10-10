@@ -1,3 +1,5 @@
+// NOTE Fix FPS //
+
 let apples = 0
 let statsBox = document.getElementById("stats")
 let inventoryBox = document.getElementById("inventory")
@@ -110,7 +112,7 @@ function addMods(itemName) {
     apples -= upgrades[itemName]['price']
     ++upgrades[itemName]['quantity']
     upgrades[itemName]['price'] *= inflation
-    FPS += ((workCrew.multiplier * workCrew.quantity) + (tractor.multiplier * tractor.quantity))
+    FPS = ((workCrew.multiplier * workCrew.quantity) + (tractor.multiplier * tractor.quantity))
   }
 
   update()
