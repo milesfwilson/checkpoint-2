@@ -1,8 +1,16 @@
-body { min-height: 100vh; display: flex; flex-direction: column; }
+body { 
+  min-height: 100vh; display: flex; flex-direction: column; 
+  /* background-image: url("./bg-img.jpg");
+background-size: cover; */
+}
 
 main{flex-grow: 1;} 
 
 .apple-img {
   height: 250px;
   margin: 10px;
+}
+
+.radius-25 {
+  border-radius: 25px;
 }
