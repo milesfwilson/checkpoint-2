@@ -1,16 +1,35 @@
 body { 
   min-height: 100vh; display: flex; flex-direction: column; 
-  /* background-image: url("./bg-img.jpg");
-background-size: cover; */
+  background-image: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
 }
 
 main{flex-grow: 1;} 
 
+
+
 .apple-img {
   height: 250px;
   margin: 10px;
+  filter: drop-shadow(2px 4px 6px #1b1b1b);
+  transition: all .35s ease;
 }
+
+.apple-img:hover {
+  transform: scale(1.1);
+
+  margin: 10px;
+  filter: drop-shadow(2px 4px 6px #1b1b1b);
+  transition: all .35s ease;
+}
+
+
 
 .radius-25 {
   border-radius: 25px;
+}
+
+.buttons:hover {
+transform: scale(1.05);
+transition: all .35s ease-in-out;
+
 }

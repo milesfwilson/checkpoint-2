@@ -145,8 +145,8 @@ function drawButtons() {
     if (upgrades.hasOwnProperty(key)) {
 
       template += `
-      <div class="col-3 text-center">
-      <div class="bg-light shadow radius-25 p-3">
+      <div class="col-md-3 col-6 text-center mb-3">
+      <div class="bg-light shadow radius-25 p-3 buttons">
       <h5>${upgrades[key].name}</h5>
       
       <div class="d-flex my-2 justify-content-center">
@@ -212,6 +212,7 @@ function update() {
   </div>
           <div class="text-left shadow bg-light radius-25 p-3 mt-3 text-dark">
           <h6>Apples: ${Math.floor(apples)}</h6>
+          <h6>Total Picked: ${Math.floor(unlock)}</h6>
           <h6>APS: ${FPS}</h6>
           <h6>Hands: ${totalMod}</h6>
           </div>
